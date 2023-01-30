@@ -1,0 +1,16 @@
+.btn {
+    width: 20vw;
+    padding: 15px;
+    background-color: #323331;
+    color: silver;
+    box-shadow: 1px 1px #000000;
+    border: none;
+    transition: .3s;
+}
+
+.btn:hover {
+    background-color: silver;
+    color: #323331;
+    box-shadow: 1px 1px #000000;
+    transform: scale(1.05);
+}

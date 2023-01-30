@@ -1,0 +1,27 @@
+.photo {
+    display: flex;
+    margin: 10px 0;
+    width: 18vw;
+    height: 35vh;
+    background-color: #fff;
+    padding: 10px;
+    opacity: .8;
+    border-radius: 5px;
+    border: 1px solid silver;
+    transition: .3s all linear;
+    transform: rotate(4deg) scale(.95);
+}
+
+.photo:nth-child(even) {
+    transform: rotate(-3deg) scale(.9);
+}
+
+.photo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.img {
+    flex-basis: 100%;
+    width: 100%;
+}

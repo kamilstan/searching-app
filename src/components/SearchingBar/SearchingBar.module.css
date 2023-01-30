@@ -1,0 +1,11 @@
+.input {
+    width: 50vw;
+    height: 8vh;
+    padding: 15px;
+    margin: 10px;
+    font-size: 1.5em;
+}
+
+.input:active {
+    border: 3px solid black;
+}
