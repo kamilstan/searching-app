@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {ChangeEvent, useContext} from "react";
 
 import {SearchContext} from "../../contexts/search.context";
 import {PageContext} from "../../contexts/page.context";
@@ -10,7 +10,7 @@ export const SearchingBar = () => {
     const {search, setSearch} = useContext(SearchContext);
     const {setPage} = useContext(PageContext);
 
-    const handleSearch = (e:any) => {
+    const handleSearch = (e:ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
         setPage(1);
     }

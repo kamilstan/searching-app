@@ -6,6 +6,7 @@
     box-shadow: 1px 1px #000000;
     border: none;
     transition: .3s;
+    margin-top: 15px;
 }
 
 .btn:hover {

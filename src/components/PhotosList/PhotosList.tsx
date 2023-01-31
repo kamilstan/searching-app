@@ -9,18 +9,23 @@ import {SinglePhoto} from "../SinglePhoto/SinglePhoto";
 import {LoadingMoreBtn} from "../LoadingMoreBtn/LoadingMoreBtn";
 
 import PhotosListCSS from "./PhotosList.module.css";
+import {useDebounce} from "../../hooks/useDebounce";
 
 export const PhotosList = () => {
 
     const {search} = useContext(SearchContext);
     const {page, setPage} = useContext(PageContext);
+
     const [photos, setPhotos] = useState<PhotoRecord[]>([]);
     const [loading, setLoading] = useState(false);
+
+    const debouncedSearch = useDebounce(search, 500);
+
 
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const res = await fetch(`https://api.unsplash.com/search/photos?query=${search}&page=${page}`, {
+            const res = await fetch(`https://api.unsplash.com/search/photos?query=${debouncedSearch}&page=${page}`, {
                 headers: {
                     'Authorization': 'Client-ID B-VvcxUrdR5YXVs7STCk9gKxTidm5qHJbX_CxHnyaZU',
                 },
@@ -31,7 +36,7 @@ export const PhotosList = () => {
         })();
         setLoading(false);
 
-    }, [search, page]);
+    }, [debouncedSearch, page]);
 
     const loadMorePhotos = () => {
         setPage(page + 1);
