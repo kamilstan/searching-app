@@ -1,6 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 
 import {SearchContext} from "../../contexts/search.context";
+import {PageContext} from "../../contexts/page.context";
+
 import {PhotoRecord} from "../../types/photo/photo";
 
 import {SinglePhoto} from "../SinglePhoto/SinglePhoto";
@@ -11,9 +13,9 @@ import PhotosListCSS from "./PhotosList.module.css";
 export const PhotosList = () => {
 
     const {search} = useContext(SearchContext);
+    const {page, setPage} = useContext(PageContext);
     const [photos, setPhotos] = useState<PhotoRecord[]>([]);
     const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(1);
 
     useEffect(() => {
         setLoading(true);
@@ -29,10 +31,13 @@ export const PhotosList = () => {
         })();
         setLoading(false);
 
-    }, [search]);
+    }, [search, page]);
 
-    if (loading) return <p>Wczytywanie...</p>
+    const loadMorePhotos = () => {
+        setPage(page + 1);
+    }
 
+    if (loading) return <h1>Loading...</h1>
 
     return (
         <>
@@ -42,10 +47,9 @@ export const PhotosList = () => {
                 ))}
             </div>
             {photos.length >= 10
-                ? <LoadingMoreBtn/>
+                ? <LoadingMoreBtn loadMorePhotos={loadMorePhotos}/>
                 : null
             }
         </>
-
     )
 }
