@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
+import {useParams, useNavigate} from "react-router-dom";
 
 import {SearchContext} from "../../contexts/search.context";
 import {PageContext} from "../../contexts/page.context";
@@ -17,16 +18,18 @@ export const PhotosList = () => {
     const {search} = useContext(SearchContext);
     const {page, setPage} = useContext(PageContext);
     const {photos, setPhotos} = useContext(PhotosContext);
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
 
     const debouncedSearch = useDebounce(search, 500);
 
+    const {pageNumber} = useParams();
 
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${page}&per_page=20`, {
+            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=10`, {
                 headers: {
                     'Authorization': 'Client-ID B-VvcxUrdR5YXVs7STCk9gKxTidm5qHJbX_CxHnyaZU',
                 },
@@ -37,12 +40,11 @@ export const PhotosList = () => {
         })();
         setLoading(false);
 
-    }, [debouncedSearch, page]);
-
-    console.log(photos);
+    }, [debouncedSearch, pageNumber]);
 
     const loadMorePhotos = () => {
         setPage(page + 1);
+        navigate(`/${page}`)
     }
 
     if (loading) return <h1>Loading...</h1>

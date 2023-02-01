@@ -4,6 +4,35 @@
     margin: 10px;
 }
 
+.label {
+    position: relative;
+}
+
+.btn-exit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-search {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+}
+
+.icon {
+    width: 2vw;
+}
+
 .input {
     width: 50vw;
     height: 8vh;
