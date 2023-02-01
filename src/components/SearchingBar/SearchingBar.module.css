@@ -1,11 +1,33 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
 .input {
     width: 50vw;
     height: 8vh;
     padding: 15px;
-    margin: 10px;
     font-size: 1.5em;
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px black;
 }
 
 .input:active {
     border: 3px solid black;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-height: 10vh;
+    width: 20vw;
+    border: 1px solid black;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.dropdown::-webkit-scrollbar {
+    display: none;
 }

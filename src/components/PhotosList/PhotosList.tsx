@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 
 import {SearchContext} from "../../contexts/search.context";
 import {PageContext} from "../../contexts/page.context";
+import {PhotosContext} from "../../contexts/photos.context";
 
 import {PhotoRecord} from "../../types/photo/photo";
 
@@ -15,8 +16,8 @@ export const PhotosList = () => {
 
     const {search} = useContext(SearchContext);
     const {page, setPage} = useContext(PageContext);
+    const {photos, setPhotos} = useContext(PhotosContext);
 
-    const [photos, setPhotos] = useState<PhotoRecord[]>([]);
     const [loading, setLoading] = useState(false);
 
     const debouncedSearch = useDebounce(search, 500);
@@ -25,18 +26,20 @@ export const PhotosList = () => {
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const res = await fetch(`https://api.unsplash.com/search/photos?query=${debouncedSearch}&page=${page}`, {
+            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${page}&per_page=20`, {
                 headers: {
                     'Authorization': 'Client-ID B-VvcxUrdR5YXVs7STCk9gKxTidm5qHJbX_CxHnyaZU',
                 },
             })
             const data = await res.json();
             setPhotos(data.results);
-            console.log(data.results)
+
         })();
         setLoading(false);
 
     }, [debouncedSearch, page]);
+
+    console.log(photos);
 
     const loadMorePhotos = () => {
         setPage(page + 1);
@@ -48,7 +51,7 @@ export const PhotosList = () => {
         <>
             <div className={PhotosListCSS.list}>
                 {photos.map((photo:PhotoRecord) => (
-                    <SinglePhoto key={photo.id} src={photo.urls.small} description={photo.description}/>
+                    <SinglePhoto key={photo.id} src={photo.cover_photo.urls.small} description={photo.description}/>
                 ))}
             </div>
             {photos.length >= 10

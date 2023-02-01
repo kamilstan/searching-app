@@ -4,7 +4,7 @@ import SinglePhotoCSS from "./SinglePhoto.module.css";
 
 interface Props {
     src: string;
-    description: string;
+    description: string | null;
 }
 
 export const SinglePhoto = (props:Props) => {
