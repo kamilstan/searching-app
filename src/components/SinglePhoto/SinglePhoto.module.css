@@ -25,3 +25,30 @@
     flex-basis: 100%;
     width: 100%;
 }
+
+@media screen and (max-width: 1201px) {
+    .photo {
+        width: 28vw;
+    }
+}
+
+@media screen and (max-width: 801px) {
+    .photo {
+        width: 40vw;
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+
+    .photo:nth-child(even) {
+        transform: rotate(0deg) scale(1);
+    }
+    .photo:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .photo {
+        width: 90vw;
+    }
+}

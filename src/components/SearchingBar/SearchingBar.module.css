@@ -1,7 +1,7 @@
 .search {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 15px;
 }
 
 .label {
@@ -57,6 +57,38 @@
     overflow-y: auto;
 }
 
-.dropdown::-webkit-scrollbar {
-    /*display: none;*/
+@media screen and (max-width: 1201px) {
+    .input {
+        width: 90vw;
+        font-size: 20px;
+    }
+
+    .icon {
+        width: 3vw;
+    }
+
+    .dropdown {
+        width: 50vw;
+    }
+
 }
+
+@media screen and (max-width: 801px) {
+    .input {
+        height: 6vh;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .icon {
+        width: 4vw;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .icon {
+        width: 6vw;
+    }
+}
+
