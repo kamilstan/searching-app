@@ -27,9 +27,10 @@ export const SearchingBar = () => {
     }
 
     const filteredPhotos = photos.filter(hint => (
-        (hint.title.toLowerCase().startsWith(search.toLowerCase())) &&
+        (hint.title.toLowerCase().includes(search.toLowerCase())) &&
         (hint.title.toLowerCase() !== search.toLowerCase())
     ));
+    console.log('filter', filteredPhotos);
 
     return (
         <div className={SearchingBarCSS.search}>
@@ -51,9 +52,9 @@ export const SearchingBar = () => {
                                     handleSearchFromHint={(e:SyntheticEvent) => handleSearchFromHint(e, hint.title)}
                                 />
                             ))
-                            .slice(8,13)
                     }
-                </div>}
+                </div>
+            }
         </div>
 
     )
