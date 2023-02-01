@@ -30,12 +30,12 @@
 }
 
 .icon {
-    width: 2vw;
+    width: 1.5vw;
 }
 
 .input {
     width: 50vw;
-    height: 8vh;
+    height: 6vh;
     padding: 15px;
     font-size: 1.5em;
     border: 2px solid black;
@@ -64,7 +64,7 @@
     }
 
     .icon {
-        width: 3vw;
+        width: 2vw;
     }
 
     .dropdown {
@@ -75,7 +75,11 @@
 
 @media screen and (max-width: 801px) {
     .input {
-        height: 6vh;
+        height: 5vh;
+    }
+
+    .icon {
+        width: 2.5vw;
     }
 }
 
@@ -91,4 +95,5 @@
         width: 6vw;
     }
 }
+
 

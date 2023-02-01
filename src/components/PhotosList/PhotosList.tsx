@@ -29,7 +29,7 @@ export const PhotosList = () => {
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=10`, {
+            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=30`, {
                 headers: {
                     'Authorization': 'Client-ID B-VvcxUrdR5YXVs7STCk9gKxTidm5qHJbX_CxHnyaZU',
                 },
@@ -47,7 +47,7 @@ export const PhotosList = () => {
         navigate(`/${page}`)
     }
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <p className={PhotosListCSS.loading}>Loading...</p>
 
     return (
         <>

@@ -5,3 +5,8 @@
     padding: 10px;
 
 }
+
+.loading {
+    width: 80vw;
+    margin: 20vh auto;
+}
