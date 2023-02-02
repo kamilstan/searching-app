@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# Search App
+
+## Introduction
+
+This project is a front-end application made in React.js, TypeScript and CSS modules.
+
+It is a recruitment task for the position of Junior Frontend Developer.
+
+## Technologies used in the project
+
+The project was written in React.js and TypeScript. I used CSS modules for styling.
+
+In the project I used techniques such as debaunce function, infinite scroll, related searches, local storage and react router.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
