@@ -32,12 +32,11 @@ export const PhotosList = () => {
         (async () => {
             const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=20`, {
                 headers: {
-                    'Authorization': 'Client-ID B-VvcxUrdR5YXVs7STCk9gKxTidm5qHJbX_CxHnyaZU',
+                    'Authorization': process.env.REACT_APP_CLIENT_ID as string,
                 },
             })
             const data = await res.json();
             setPhotos(data.results);
-
         })();
         setLoading(false);
 
