@@ -1,0 +1,49 @@
+.btn-exit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-search {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+}
+
+.icon {
+    width: 1.5vw;
+}
+
+@media screen and (max-width: 1201px) {
+    .icon {
+        width: 2vw;
+    }
+}
+
+@media screen and (max-width: 801px) {
+    .icon {
+        width: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .icon {
+        width: 4vw;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .icon {
+        width: 6vw;
+    }
+}

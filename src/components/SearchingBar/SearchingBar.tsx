@@ -1,14 +1,16 @@
-import React, {ChangeEvent, SyntheticEvent, useContext, useEffect, useState} from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {SearchContext} from "../../contexts/search.context";
 import {PageContext} from "../../contexts/page.context";
 import {PhotosContext} from "../../contexts/photos.context";
 
-import {SingleHint} from "../SingleHint/SingleHint";
+import {SearchBtn} from "../../common/SearchBtn/SearchBtn";
+import {SearchInput} from "../../common/SearchInput/SearchInput";
+import {HintList} from "../HintList/HintList";
+import {CachedHintList} from "../CachedHintList/CachedHintList";
 
 import SearchingBarCSS from "./SearchingBar.module.css";
-import SingleHintCSS from "../SingleHint/SingleHint.module.css"
 
 export const SearchingBar = () => {
 
@@ -16,22 +18,9 @@ export const SearchingBar = () => {
     const {photos, setPhotos} = useContext(PhotosContext);
     const {page, setPage} = useContext(PageContext);
 
-    const [cachedData, setCachedData] = useState<string[]>(() => {
-        try {
-            const value = localStorage.getItem("searchResults");
-            return value ? JSON.parse(value) : [];
-        } catch {
-            return []
-        }
-    });
     const [isFocused, setIsFocused] = useState(false);
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        localStorage.setItem("searchResults", JSON.stringify(cachedData));
-    }, [cachedData]);
-
 
     const handleSearch = (e:ChangeEvent<HTMLInputElement>) => {
         setPhotos([]);
@@ -40,34 +29,17 @@ export const SearchingBar = () => {
         navigate(`/${page}`);
     }
 
-    const handleSearchFromHint = ( e:SyntheticEvent, value:string) => {
-        setPhotos([]);
-        setSearch(value);
-        setPage(1);
-        navigate(`/${page}`);
-        setCachedData((prev) => [...prev, value].filter((item, index, array) => array.indexOf(item) === index));
-
-    }
-
-    const handleSearchFromCachedData = ( e:SyntheticEvent, value:string) => {
-        setPhotos([]);
-        setSearch(value);
-        setPage(1);
-        navigate(`/${page}`);
-
-    }
-
-    const handleClick = (e:SyntheticEvent) => {
+    const handleClick = () => {
         setPage(1);
         setSearch("");
         navigate(`/`);
     }
 
-    const handleFocus = (e: SyntheticEvent) => {
+    const handleFocus = () => {
         setIsFocused(true);
     }
 
-    const handleBlur = (e: SyntheticEvent) => {
+    const handleBlur = () => {
         setTimeout(() => {
             setIsFocused(false);
         },100)
@@ -81,56 +53,26 @@ export const SearchingBar = () => {
     return (
         <div className={SearchingBarCSS.search}>
             <label className={SearchingBarCSS.label}>
-                <input className={SearchingBarCSS.input}
+                <SearchInput
                        type="text"
                        placeholder="Start searching..."
                        value={search}
-                       onChange={handleSearch}
+                       onChange={(e:ChangeEvent<HTMLInputElement>) => handleSearch(e)}
                        onFocus={handleFocus}
                        onBlur={handleBlur}
-
                 />
                 {
                     search ?
-                    <button onClick={handleClick} className={SearchingBarCSS["btn-exit"]}>
-                        <img src="close.svg" alt="close" className={SearchingBarCSS.icon} />
-                    </button>
-                    :
-                    <button className={SearchingBarCSS["btn-search"]}>
-                        <img src="search.svg" alt="search" className={SearchingBarCSS.icon} />
-                    </button>
+                            <SearchBtn src="close.svg" alt="close" handleClick={handleClick}/>
+                            :
+                            <SearchBtn src="search.svg" alt="search"/>
                 }
             </label>
             {
                 search ?
-                    filteredPhotos.length > 0 &&
-                    <div className={SearchingBarCSS.dropdown}>
-                        {
-                            filteredPhotos
-                                .map(hint => (
-                                    <SingleHint
-                                        key={hint.id}
-                                        title={hint.title}
-                                        handleSearchFromHint={(e:SyntheticEvent) => handleSearchFromHint(e, hint.title)}
-                                    />
-
-                                ))
-                        }
-                    </div>
-                    :
-                    <div className={SearchingBarCSS.dropdown}>
-                        {isFocused &&
-                        cachedData
-                            .map((item:string, index) =>
-                                <p key={index}
-                                   className={SingleHintCSS.hint}
-                                   onClick={e => handleSearchFromCachedData(e, item)}
-                                >
-                                    {item}
-                                </p>
-                            )
-                        }
-                    </div>
+                        filteredPhotos.length > 0 && <HintList filteredPhotos={filteredPhotos}/>
+                       :
+                        <CachedHintList isFocused={isFocused}/>
             }
         </div>
     )

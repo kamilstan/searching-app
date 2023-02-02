@@ -42,6 +42,7 @@
     .photo:nth-child(even) {
         transform: rotate(0deg) scale(1);
     }
+
     .photo:hover {
         transform: scale(1.1);
     }

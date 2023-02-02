@@ -1,0 +1,16 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-height: 10vh;
+    width: 20vw;
+    border: 1px solid black;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 1201px) {
+    .dropdown {
+        width: 50vw;
+    }
+}
