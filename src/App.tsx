@@ -7,7 +7,6 @@ import {PhotosContext} from "./contexts/photos.context";
 
 import {PhotoRecord} from "./types/photo/photo";
 import {AppView} from "./views/AppView/AppView";
-import {SearchingBar} from "./components/SearchingBar/SearchingBar";
 
 function App() {
 
@@ -20,10 +19,6 @@ function App() {
           <PageContext.Provider value={{page, setPage}}>
               <PhotosContext.Provider value={{photos, setPhotos}}>
                 <Routes>
-                    {/*<Route*/}
-                    {/*    path="/"*/}
-                    {/*    element={<SearchingBar/>}*/}
-                    {/*/>*/}
                     <Route
                         path="/:pageNumber?"
                         element={<AppView />}

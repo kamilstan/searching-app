@@ -7,11 +7,12 @@ import {PhotosContext} from "../../contexts/photos.context";
 
 import {PhotoRecord} from "../../types/photo/photo";
 
+import {useDebounce} from "../../hooks/useDebounce";
+
 import {SinglePhoto} from "../SinglePhoto/SinglePhoto";
 import {LoadingMoreBtn} from "../LoadingMoreBtn/LoadingMoreBtn";
 
 import PhotosListCSS from "./PhotosList.module.css";
-import {useDebounce} from "../../hooks/useDebounce";
 
 export const PhotosList = () => {
 
@@ -29,7 +30,7 @@ export const PhotosList = () => {
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=30`, {
+            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=10`, {
                 headers: {
                     'Authorization': 'Client-ID B-VvcxUrdR5YXVs7STCk9gKxTidm5qHJbX_CxHnyaZU',
                 },
