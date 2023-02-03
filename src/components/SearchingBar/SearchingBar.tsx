@@ -29,7 +29,8 @@ export const SearchingBar = () => {
         navigate(`/${page}`);
     }
 
-    const handleClick = () => {
+    const handleExit = () => {
+        setPhotos([]);
         setPage(1);
         setSearch("");
         navigate(`/`);
@@ -63,7 +64,7 @@ export const SearchingBar = () => {
                 />
                 {
                     search ?
-                            <SearchBtn src="close.svg" alt="close" handleClick={handleClick}/>
+                            <SearchBtn src="close.svg" alt="close" handleExit={handleExit}/>
                             :
                             <SearchBtn src="search.svg" alt="search"/>
                 }

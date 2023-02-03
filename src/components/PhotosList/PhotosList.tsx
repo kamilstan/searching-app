@@ -30,9 +30,9 @@ export const PhotosList = () => {
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=20`, {
+            const res = await fetch(`https://api.unsplash.com/search/collections?query=${debouncedSearch}&page=${pageNumber}&per_page=15`, {
                 headers: {
-                    'Authorization': process.env.REACT_APP_CLIENT_ID as string,
+                    'Authorization': `Client-ID ${process.env.REACT_APP_CLIENT_ID}` as string,
                 },
             })
             const data = await res.json();

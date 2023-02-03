@@ -48,7 +48,6 @@ export const HintList = (props:Props) => {
                             title={hint.title}
                             handleSearchFromHint={(e:SyntheticEvent) => handleSearchFromHint(e, hint.title)}
                         />
-
                     ))
             }
         </div>

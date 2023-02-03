@@ -47,3 +47,10 @@
         width: 6vw;
     }
 }
+@media screen and (max-height: 801px) {
+    .icon {
+        width: 1.2vw;
+    }
+}
+
+
